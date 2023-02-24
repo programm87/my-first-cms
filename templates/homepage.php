@@ -26,7 +26,20 @@
                     </span>
                 <?php } ?>
             </h2>
-            <p class="summary"><?php echo htmlspecialchars($article->summary)?></p>
+            <p class="summary">
+                <?php // echo htmlspecialchars($article->summary)
+                    $datachars = htmlspecialchars($article->summary);
+                    if (strlen($datachars) < 50) {
+                        echo $datachars . '...';
+                    }
+                    elseif ($datachars[50] == ' ') { 
+                        echo mb_substr($datachars, 0, 49) . '...';
+                    }
+                    else {
+                        echo mb_substr($datachars, 0, 50) . '...';
+                    }
+                ?>
+            </p>
             <img id="loader-identity" src="JS/ajax-loader.gif" alt="gif">
             
             <ul class="ajax-load">
