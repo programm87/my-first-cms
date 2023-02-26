@@ -4,6 +4,8 @@
 
 require("config.php");
 
+$proverka_github = 'Проверка комита';
+
 try {
     initApplication();
 } catch (Exception $e) { 
