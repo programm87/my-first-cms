@@ -136,7 +136,7 @@ class Article
     * @return Array|false Двух элементный массив: results => массив объектов Article; totalRows => общее количество строк
     */
     public static function getList($numRows=1000000, 
-            $categoryId=null, $order="publicationDate DESC", $activeter=0) 
+            $categoryId=null, $order="publicationDate DESC", $activeter=false) 
     {
         $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
         $fromPart = "FROM articles";
