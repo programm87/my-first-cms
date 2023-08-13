@@ -17,19 +17,19 @@
                     <?php echo htmlspecialchars( $article->title )?>
                 </a>
                 
-                <?php if (isset($article->categoryId)) { ?>
-                    <span class="category">
-                        in 
-                        <a href=".?action=archive&amp;categoryId=<?php echo $article->categoryId?>">
-                            <?php echo htmlspecialchars($results['categories'][$article->categoryId]->name )?>
-                        </a>
-                    </span>
-                <?php } 
-                else { ?>
-                    <span class="category">
-                        <?php echo "Без категории"?>
-                    </span>
-                <?php } ?>
+                <span class="category">
+		    in 
+		    <a href=".?action=archive&amp;categoryId=<?php echo $article->categoryId ?? 0 ?>">
+			<?php echo htmlspecialchars($results['categories'][$article->categoryId]->name ?? "Без категории")?>
+		    </a>
+                </span>
+                <span class="category">
+		    Подкатегория 
+		    <a href=".?action=archive&amp;subcategoryId=<?php echo $article->subcategoryId ?? 0 ?>">
+                        <?php echo htmlspecialchars($results['subcategories'][$article->subcategoryId]->name ?? "Без подкатегории")?>
+                    </a>
+                </span>
+                
             </h2>
             <p class="summary"><?php echo htmlspecialchars($article->summary)?></p>
             <img id="loader-identity" src="JS/ajax-loader.gif" alt="gif">
@@ -44,6 +44,8 @@
         </li>
     <?php } ?>
     </ul>
+
+<!--<?php echo '<pre>'; print_r($results['categories']); echo '</pre>'; ?>-->
     <p><a href="./?action=archive">Article Archive</a></p>
 <?php include "templates/include/footer.php" ?>
 
