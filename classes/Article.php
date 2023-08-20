@@ -69,7 +69,11 @@ class Article
       }
       
       if (isset($data['categoryId'])) {
-          $this->categoryId = (int) $data['categoryId'];      
+          $this->categoryId = (int) $data['categoryId']; 
+      }
+      
+      if (isset($data['subcategoryId'])) {
+          $this->subcategoryId = (int) $data['subcategoryId'];      
       }
       
       if (isset($data['summary'])) {
