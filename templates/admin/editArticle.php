@@ -77,6 +77,18 @@
               </li>
               
               <li>
+                <label for="authors">Article Authors</label>
+		<style> option:checked {background: linear-gradient(#ef7d50, #ef7d50)}</style>
+                <select name="authors[]" multiple size="5" style="width:30%">
+                <?php foreach ($results['authors'] as $id => $author) { ?>
+                  <option value="<?php echo $id?>"<?php 
+		  echo in_array($id, $results['article']->authors ?? $_POST['authors'] ?? []) ?
+		  " selected" : "" ?>><?php echo htmlspecialchars($author->login)?></option>
+                <?php } ?>		
+                </select>
+              </li>
+              
+              <li>
                 <label for="publicationDate">Publication Date</label>
                                 <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php 
 		echo $_POST['publicationDate'] ?? 

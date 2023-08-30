@@ -121,6 +121,7 @@ function newArticle() {
     $results['group'] = Subcategory::getGroup();
     $results['categories'] = Category::getList()['results'];
     $results['subcategories'] = Subcategory::getList()['results'];
+    $results['authors'] = User::getList()['results'];
 
     if (isset($_POST['saveChanges'])) {
 	$article = new Article();
@@ -161,6 +162,7 @@ function editArticle() {
     $results['group'] = Subcategory::getGroup();
     $results['categories'] = Category::getList()['results'];
     $results['subcategories'] = Subcategory::getList()['results'];
+    $results['authors'] = User::getList()['results'];
 
     if (isset($_POST['saveChanges'])) {
 
@@ -169,6 +171,8 @@ function editArticle() {
             header( "Location: admin.php?error=articleNotFound" );
             return;
         }
+        
+        $article->authors = [];
         
         $article->storeFormValues($_POST);
         
@@ -188,7 +192,7 @@ function editArticle() {
     } else {
 
         // Пользвоатель еще не получил форму редактирования: выводим форму
-        $results['article'] = Article::getById((int)$_GET['articleId']);
+        $results['article'] = Article::getById((int) $_GET['articleId'], true);
 //        $data = Category::getList();
 //        $results['categories'] = $data['results'];
         require(TEMPLATE_PATH . "/admin/editArticle.php");
